@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "104319961536",
+    "firebase_url": "https://praycircle.firebaseio.com",
+    "project_id": "praycircle",
+    "storage_bucket": "praycircle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104319961536:android:6df73955d1b9cee6",
+        "android_client_info": {
+          "package_name": "se.android.praycircle.praycircle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104319961536-derspho519d0cqsock9dueeco1247iug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "se.android.praycircle.praycircle",
+            "certificate_hash": "410A5B6FE8FD356378BD3084C3C1CFF2F5E618E4"
+          }
+        },
+        {
+          "client_id": "104319961536-raodhvj7tle2c0dg66rsr0h2k529up7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt1GibFD3y-Htu6yCKJpLoe4O3Mr78_YM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104319961536-raodhvj7tle2c0dg66rsr0h2k529up7m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
