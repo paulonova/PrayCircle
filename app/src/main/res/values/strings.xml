@@ -13,20 +13,24 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">Create your account!</string>
+    <string name="slide_1_desc">By creating your account,
+        you can access prayer requests that other people have allowed to access,
+        you can also create prayer groups with other users and also receive event notifications,
+        prayer networks, and a lot more...</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
+    <string name="slide_2_title">Write your prayer\n and Share!</string>
     <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
 
-    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_title">Create pray groups!</string>
     <string name="slide_3_desc">Best discounts on every single service we offer!</string>
 
-    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_title">Set pray alarm!</string>
     <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+    <string name="welcome_title">Welcome to \n Pray Circle App</string>
     <!-- From the Slide test *********************************************************************************************************-->
 
 </resources>
