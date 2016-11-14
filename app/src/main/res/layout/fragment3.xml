@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/old_paper_clock"
     tools:context="se.android.praycircle.praycircle.fragments.Fragment3">
 
     <!-- TODO: Update blank fragment layout -->
