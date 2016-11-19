@@ -126,7 +126,7 @@ public class SlidesControllActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(SlidesControllActivity.this, MainActivity.class));
+        startActivity(new Intent(SlidesControllActivity.this, SignUpActivity.class));
         finish();
     }
 
