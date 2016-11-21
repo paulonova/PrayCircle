@@ -69,6 +69,7 @@
     <string name="enter_email">Enter email address!</string>
     <string name="enter_password">Enter password!</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
+    <string name="prompt_password">Change Password</string>
 
 
 </resources>

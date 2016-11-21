@@ -19,17 +19,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import se.android.praycircle.praycircle.R;
+import se.android.praycircle.praycircle.objects.User;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.sign_in_button) Button btnSignIn;
     @BindView(R.id.sign_up_button) Button btnSignUp;
+    @BindView(R.id.btn_go_setting) Button btnGoSetting;
     @BindView(R.id.email) EditText inputEmail;
     @BindView(R.id.password) EditText inputPassword;
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.btn_reset_password) Button btnResetPassword;
 
     private FirebaseAuth auth;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,67 +43,12 @@ public class SignUpActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
+        user = new User();
 
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-            }
-        });
-
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), R.string.password_too_short, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
-
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-                                    finish();
-                                }
-                            }
-                        });
-            }
-        });
+        btnGoSetting.setOnClickListener(this);
+        btnResetPassword.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+        btnSignUp.setOnClickListener(this);
 
     }
 
@@ -111,5 +59,77 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    public void signUpUserAccount(){
+
+        String email = inputEmail.getText().toString().trim();
+        user.setUserEmail(email);
+        String password = inputPassword.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(), R.string.password_too_short, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        //create user
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    }
+                });
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.sign_in_button:
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                break;
+
+            case R.id.sign_up_button:
+                signUpUserAccount();
+                break;
+
+            case R.id.btn_go_setting:
+                startActivity(new Intent(SignUpActivity.this, UserFirebaseSettingsActivity.class));
+                break;
+
+            case R.id.btn_reset_password:
+                startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
+                break;
+
+
+        }
+
+    }
 }
 

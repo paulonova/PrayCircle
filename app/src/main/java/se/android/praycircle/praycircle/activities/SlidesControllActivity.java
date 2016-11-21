@@ -126,7 +126,7 @@ public class SlidesControllActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(SlidesControllActivity.this, SignUpActivity.class));
+        startActivity(new Intent(SlidesControllActivity.this, LoginActivity.class));
         finish();
     }
 
@@ -172,7 +172,6 @@ public class SlidesControllActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
-
 
 
 
