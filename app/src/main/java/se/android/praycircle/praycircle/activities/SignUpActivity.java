@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.btn_reset_password) Button btnResetPassword;
 
     private FirebaseAuth auth;
+    private FirebaseAnalytics mFaAnalytics;
     private User user;
 
     @Override
@@ -42,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        mFaAnalytics = FirebaseAnalytics.getInstance(this);
 
         user = new User();
 

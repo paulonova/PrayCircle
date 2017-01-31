@@ -15,10 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import se.android.praycircle.praycircle.R;
 import se.android.praycircle.praycircle.adapters.PagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseAnalytics mFaAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mFaAnalytics = FirebaseAnalytics.getInstance(this);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.pray_groups)));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.prayer_watch)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 

@@ -70,6 +70,8 @@
     <string name="enter_password">Enter password!</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
     <string name="prompt_password">Change Password</string>
+    <string name="pray_groups">Groups of Prayer</string>
+    <string name="prayer_watch">Prayer Watch</string>
 
 
 </resources>
