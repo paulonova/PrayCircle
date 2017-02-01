@@ -72,6 +72,7 @@
     <string name="prompt_password">Change Password</string>
     <string name="pray_groups">Groups of Prayer</string>
     <string name="prayer_watch">Prayer Watch</string>
+    <string name="logout">Logout</string>
 
 
 </resources>

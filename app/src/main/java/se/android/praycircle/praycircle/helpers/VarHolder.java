@@ -12,6 +12,7 @@ public class VarHolder {
      * private VarHolder varHolder = VarHolder.getInstance();  */
 
 
+
     private static VarHolder ourInstance = null;
 
     public static VarHolder getInstance(){
@@ -20,6 +21,10 @@ public class VarHolder {
         }
         return ourInstance;
     }
+
+
+    //CONSTANTS
+
 
 
 

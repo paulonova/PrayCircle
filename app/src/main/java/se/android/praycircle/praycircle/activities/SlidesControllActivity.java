@@ -29,7 +29,7 @@ public class SlidesControllActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
-    private PrefManager prefManager;
+    //private PrefManager prefManager;
 
 
     @Override
@@ -37,7 +37,7 @@ public class SlidesControllActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Checking for first time launch - before calling setContentView()
-        prefManager = new PrefManager(this);
+        //prefManager = new PrefManager(this);
 
 
 //        if(!prefManager.isFirstTimeLaunch()){
@@ -79,7 +79,13 @@ public class SlidesControllActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchHomeScreen();
+                startActivity(new Intent(SlidesControllActivity.this, LoginActivity.class));
+                finish();
+
+//                if(prefManager.isFirstTimeLaunch()){
+//                    launchHomeScreen();
+//                }
+
             }
         });
 
@@ -124,8 +130,9 @@ public class SlidesControllActivity extends AppCompatActivity {
         return viewPager.getCurrentItem() + i;
     }
 
+    // Handle the Login screen starting..
     private void launchHomeScreen() {
-        prefManager.setFirstTimeLaunch(false);
+        //prefManager.setFirstTimeLaunch(true);
         startActivity(new Intent(SlidesControllActivity.this, LoginActivity.class));
         finish();
     }

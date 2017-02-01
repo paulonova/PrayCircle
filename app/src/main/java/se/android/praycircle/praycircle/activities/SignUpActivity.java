@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,28 +13,30 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import se.android.praycircle.praycircle.R;
 import se.android.praycircle.praycircle.objects.User;
 
+/** ******************CREATE USER ACCOUNT *********************************************************/
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R.id.sign_in_button) Button btnSignIn;
-    @BindView(R.id.sign_up_button) Button btnSignUp;
-    @BindView(R.id.btn_go_setting) Button btnGoSetting;
+    @BindView(R.id.btnAlreadyRegistered) Button btnSignIn;
+    @BindView(R.id.btnCreateAccount) Button btnSignUp;
     @BindView(R.id.email) EditText inputEmail;
     @BindView(R.id.password) EditText inputPassword;
     @BindView(R.id.progressBar) ProgressBar progressBar;
-    @BindView(R.id.btn_reset_password) Button btnResetPassword;
+    @BindView(R.id.btnResetPassword) Button btnResetPassword;
 
     private FirebaseAuth auth;
-    private FirebaseAnalytics mFaAnalytics;
     private User user;
 
     @Override
@@ -44,14 +47,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-        mFaAnalytics = FirebaseAnalytics.getInstance(this);
-
         user = new User();
 
-        btnGoSetting.setOnClickListener(this);
         btnResetPassword.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+
+        Log.d("FB_User", "Passando por aqui SignUpActivity");
 
     }
 
@@ -61,50 +63,68 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         progressBar.setVisibility(View.GONE);
     }
 
+    private boolean checkFormFields() {
 
-    public void signUpUserAccount(){
+        user.setUserEmail(inputEmail.getText().toString().trim());
+        user.setUserPassword(inputPassword.getText().toString().trim());
 
-        String email = inputEmail.getText().toString().trim();
-        user.setUserEmail(email);
-        String password = inputPassword.getText().toString().trim();
-
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
-            return;
+        if (TextUtils.isEmpty(user.getUserEmail()) && android.util.Patterns.EMAIL_ADDRESS.matcher(user.getUserEmail()).matches()) {
+            Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_LONG).show();
+            return false;
         }
 
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
-            return;
+        if (TextUtils.isEmpty(user.getUserPassword())) {
+            Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_LONG).show();
+            return false;
         }
 
-        if (password.length() < 6) {
-            Toast.makeText(getApplicationContext(), R.string.password_too_short, Toast.LENGTH_SHORT).show();
+        if (user.getUserPassword().length() < 6) {
+            Toast.makeText(getApplicationContext(), R.string.password_too_short, Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
+
+    }
+
+
+
+    public void createUserAccount(){
+
+        if(!checkFormFields()){
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
 
         //create user
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(user.getUserEmail(), user.getUserPassword())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                        Log.d("CREATE_USER", "create User With Email: onComplete: " + task.isSuccessful());
                         progressBar.setVisibility(View.GONE);
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "User created", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                             finish();
+
+                        } else {
+                            Toast.makeText(SignUpActivity.this,  "Account creation failed" , Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(SignUpActivity.this, "This email address is already in use.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(SignUpActivity.this, "" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
@@ -114,19 +134,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()){
 
-            case R.id.sign_in_button:
+            case R.id.btnAlreadyRegistered:
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 break;
 
-            case R.id.sign_up_button:
-                signUpUserAccount();
+            case R.id.btnCreateAccount:
+                createUserAccount();
                 break;
 
-            case R.id.btn_go_setting:
-                startActivity(new Intent(SignUpActivity.this, UserFirebaseSettingsActivity.class));
-                break;
-
-            case R.id.btn_reset_password:
+            case R.id.btnResetPassword:
                 startActivity(new Intent(SignUpActivity.this, ResetPasswordActivity.class));
                 break;
 

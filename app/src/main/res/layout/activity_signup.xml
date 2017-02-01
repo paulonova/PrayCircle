@@ -61,7 +61,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/sign_up_button"
+            android:id="@+id/btnCreateAccount"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_reset_password"
+            android:id="@+id/btnResetPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -84,7 +84,7 @@
         <!-- Link to Login Screen -->
 
         <Button
-            android:id="@+id/sign_in_button"
+            android:id="@+id/btnAlreadyRegistered"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -92,17 +92,6 @@
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
             android:textColor="@color/bg_login"
-            android:textSize="15dp" />
-
-        <Button
-            android:id="@+id/btn_go_setting"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@color/bg_login"
-            android:text="Go to Settings"
-            android:textAllCaps="false"
-            android:textColor="@color/btn_logut_bg"
             android:textSize="15dp" />
 
 

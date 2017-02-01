@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>promo_enabled</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>promo_message</key>
+        <value>Thank´s for your donation! God bless you..</value>
+    </entry>
+</defaultsMap>

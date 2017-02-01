@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +22,7 @@ import se.android.praycircle.praycircle.R;
 public class ResetPasswordActivity extends AppCompatActivity {
 
     @BindView(R.id.email) EditText inputEmail;
-    @BindView(R.id.btn_reset_password)  Button btnReset;
+    @BindView(R.id.btnResetPassword)  Button btnReset;
     @BindView(R.id.btn_back) Button btnBack;
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
@@ -56,8 +55,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
