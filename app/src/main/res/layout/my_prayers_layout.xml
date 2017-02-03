@@ -9,7 +9,8 @@
         android:id="@+id/relativeLayoutMyPrayersView"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="@color/bg_screen2">
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@color/black">
 
 
         <RelativeLayout
@@ -108,8 +109,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
         android:layout_below="@id/relativeLayoutMyPrayersView"/>
 
 
