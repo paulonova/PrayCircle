@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myPayersContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutMyPrayersView"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/bg_screen2">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutImages"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_margin="7dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImgViewUserAvatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:foregroundGravity="center_vertical"
+                android:src="@drawable/avatar_default"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutClockAlarm"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:visibility="visible"
+                android:background="@drawable/custom_white_circle"
+                android:layout_alignBottom="@+id/circleImgViewUserAvatar"
+                android:layout_alignRight="@+id/circleImgViewUserAvatar"
+                android:layout_alignEnd="@+id/circleImgViewUserAvatar" >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circleImgViewClockAlarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1.5dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:src="@drawable/ic_alarm_on_gray_24dp"
+                    android:adjustViewBounds="false"
+                    android:cropToPadding="true" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtMyPrayerDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:text="@string/date"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/relativeLayoutImages"
+            android:layout_marginTop="10dp">
+
+
+            <TextView
+                android:id="@+id/txtPrayerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:text="@string/prayer_title"
+                android:lines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/txtPrayerSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/txtPrayerTitle"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:lines="2"
+                android:ellipsize="end"
+                android:text="@string/prayer_subject"
+                android:layout_below="@id/txtPrayerTitle"/>
+
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/relativeLayoutMyPrayersView"/>
+
+
+
+</RelativeLayout>

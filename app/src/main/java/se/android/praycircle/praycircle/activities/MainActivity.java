@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         auth = FirebaseAuth.getInstance();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.my_prayers)));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.pray_groups)));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.prayer_watch)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

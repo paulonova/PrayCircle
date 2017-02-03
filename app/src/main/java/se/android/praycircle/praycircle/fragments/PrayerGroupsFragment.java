@@ -12,10 +12,10 @@ import se.android.praycircle.praycircle.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment1 extends Fragment {
+public class PrayerGroupsFragment extends Fragment {
 
 
-    public Fragment1() {
+    public PrayerGroupsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment2, container, false);
 
         return rootView;
     }

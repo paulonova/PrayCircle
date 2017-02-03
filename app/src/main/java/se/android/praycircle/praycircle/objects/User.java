@@ -1,28 +1,79 @@
 package se.android.praycircle.praycircle.objects;
 
-/**
- * Created by Paulo Vila Nova on 2016-11-19.
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/** * Created by Paulo Vila Nova on 2016-11-19.
  */
 
-public class User {
+public class User implements Parcelable {
 
     private String userName;
     private int userId;
     private String userEmail;
     private String userPassword;
-
-    
+    private String avatarUrl;
+    private String location;
+    private String gender;
+    private int prayersCreated;
+    private int prayersAttended;
 
     public User() {
     }
 
-    public User(int userId, String userName, String userEmail, String userPassword){
-        this.userId = userId;
+    public User(String userName, int userId, String userEmail, String userPassword, String avatarUrl, String location, String gender, int prayersCreated, int prayersAttended) {
         this.userName = userName;
+        this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.avatarUrl = avatarUrl;
+        this.location = location;
+        this.gender = gender;
+        this.prayersCreated = prayersCreated;
+        this.prayersAttended = prayersAttended;
     }
 
+    protected User(Parcel in) {
+        userName = in.readString();
+        userId = in.readInt();
+        userEmail = in.readString();
+        userPassword = in.readString();
+        avatarUrl = in.readString();
+        location = in.readString();
+        gender = in.readString();
+        prayersCreated = in.readInt();
+        prayersAttended = in.readInt();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userName);
+        parcel.writeInt(userId);
+        parcel.writeString(userEmail);
+        parcel.writeString(userPassword);
+        parcel.writeString(avatarUrl);
+        parcel.writeString(location);
+        parcel.writeString(gender);
+        parcel.writeInt(prayersCreated);
+        parcel.writeInt(prayersAttended);
+    }
 
     public String getUserName() {
         return userName;
@@ -54,5 +105,45 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getPrayersCreated() {
+        return prayersCreated;
+    }
+
+    public void setPrayersCreated(int prayersCreated) {
+        this.prayersCreated = prayersCreated;
+    }
+
+    public int getPrayersAttended() {
+        return prayersAttended;
+    }
+
+    public void setPrayersAttended(int prayersAttended) {
+        this.prayersAttended = prayersAttended;
     }
 }

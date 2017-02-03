@@ -70,9 +70,15 @@
     <string name="enter_password">Enter password!</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
     <string name="prompt_password">Change Password</string>
-    <string name="pray_groups">Groups of Prayer</string>
+    <string name="pray_groups">Pray Groups</string>
     <string name="prayer_watch">Prayer Watch</string>
     <string name="logout">Logout</string>
+    <string name="my_prayers">My Prayers</string>
+    <string name="prayer_title">Prayer Title</string>
+    <string name="prayer_subject">When I am found upon my knees And all want is You to be with me I know You show yourself so true My hope is found in You</string>
+    <string name="empty_my_prayer_list_title">You don/\'t have any prayers subject active!</string>
+    <string name="empty_prayer_list_sub_title">Click on plus button down below to create a prayer subject</string>
+    <string name="date">date</string>
 
 
 </resources>

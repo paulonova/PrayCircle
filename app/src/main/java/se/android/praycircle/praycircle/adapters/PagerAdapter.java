@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import se.android.praycircle.praycircle.fragments.Fragment1;
-import se.android.praycircle.praycircle.fragments.Fragment2;
-import se.android.praycircle.praycircle.fragments.Fragment3;
+import se.android.praycircle.praycircle.fragments.MyPrayersFragment;
+import se.android.praycircle.praycircle.fragments.PrayerGroupsFragment;
+import se.android.praycircle.praycircle.fragments.PrayerAlarmFragment;
 
 /**
  * Created by Paulo Vila Nova on 2016-11-11.
@@ -27,13 +27,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Fragment1 tab1 = new Fragment1();
+                MyPrayersFragment tab1 = new MyPrayersFragment();
                 return tab1;
             case 1:
-                Fragment2 tab2 = new Fragment2();
+                PrayerGroupsFragment tab2 = new PrayerGroupsFragment();
                 return tab2;
             case 2:
-                Fragment3 tab3 = new Fragment3();
+                PrayerAlarmFragment tab3 = new PrayerAlarmFragment();
                 return tab3;
             default:
                 return null;
