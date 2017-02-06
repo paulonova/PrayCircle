@@ -9,7 +9,7 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
     private String userName;
-    private int userId;
+    private String userId;
     private String userEmail;
     private String userPassword;
     private String avatarUrl;
@@ -21,7 +21,7 @@ public class User implements Parcelable {
     public User() {
     }
 
-    public User(String userName, int userId, String userEmail, String userPassword, String avatarUrl, String location, String gender, int prayersCreated, int prayersAttended) {
+    public User(String userName, String userId, String userEmail, String userPassword, String avatarUrl, String location, String gender, int prayersCreated, int prayersAttended) {
         this.userName = userName;
         this.userId = userId;
         this.userEmail = userEmail;
@@ -35,7 +35,7 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         userName = in.readString();
-        userId = in.readInt();
+        userId = in.readString();
         userEmail = in.readString();
         userPassword = in.readString();
         avatarUrl = in.readString();
@@ -65,7 +65,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(userName);
-        parcel.writeInt(userId);
+        parcel.writeString(userId);
         parcel.writeString(userEmail);
         parcel.writeString(userPassword);
         parcel.writeString(avatarUrl);
@@ -83,11 +83,11 @@ public class User implements Parcelable {
         this.userName = userName;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

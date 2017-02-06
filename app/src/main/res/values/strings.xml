@@ -79,6 +79,25 @@
     <string name="empty_my_prayer_list_title">You don/\'t have any prayers subject active!</string>
     <string name="empty_prayer_list_sub_title">Click on plus button down below to create a prayer subject</string>
     <string name="date">date</string>
+    <string name="btn_user_register">User Registration</string>
+    <string name="hint_user_name">User name</string>
+    <string name="hint_pray_title">Pray Title</string>
+    <string name="hint_pray_subject">Pray Subject</string>
+    <string name="btn_create_my_pray">Create my Prayer</string>
+    <string name="complete_your_register">Complete your profile</string>
+    <string name="edt_profile_firstname">Firstname</string>
+    <string name="edt_profile_lastname">Lastname</string>
+    <string name="edt_profile_email">Email</string>
+    <string name="register_profile">Register Profile</string>
+    <string name="edt_profile_country">Country</string>
+    <string name="edt_profile_city">City</string>
+    <string name="pick_a_profile_picture">Pick a profile picture</string>
+    <string name="title_dialog_pick_event_cover">Chose a picture</string>
+
+    <array name="pictures">
+        <item>Take a picture</item>
+        <item>Photo gallery</item>
+    </array>
 
 
 </resources>

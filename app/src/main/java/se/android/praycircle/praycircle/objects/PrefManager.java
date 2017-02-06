@@ -3,8 +3,7 @@ package se.android.praycircle.praycircle.objects;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Paulo Vila Nova on 2016-11-11.
+/** * Created by Paulo Vila Nova on 2016-11-11.
  */
 
 public class PrefManager {

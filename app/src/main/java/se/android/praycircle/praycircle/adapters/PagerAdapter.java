@@ -8,8 +8,7 @@ import se.android.praycircle.praycircle.fragments.MyPrayersFragment;
 import se.android.praycircle.praycircle.fragments.PrayerGroupsFragment;
 import se.android.praycircle.praycircle.fragments.PrayerAlarmFragment;
 
-/**
- * Created by Paulo Vila Nova on 2016-11-11.
+/** * Created by Paulo Vila Nova on 2016-11-11.
  */
 
 public class PagerAdapter extends FragmentStatePagerAdapter {

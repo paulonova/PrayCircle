@@ -3,9 +3,9 @@ package se.android.praycircle.praycircle.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -44,6 +44,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CreateUserProfileActivity.class));
+            }
+        });
+
+
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -52,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                Log.d("TAB_TEST", " tab: " + tab.getPosition());
+                if(tab.getPosition()== 0){
+                    fab.setVisibility(View.VISIBLE);
+                }else{
+                    fab.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -62,18 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 

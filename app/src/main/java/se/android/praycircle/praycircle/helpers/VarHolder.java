@@ -36,4 +36,8 @@ public class VarHolder {
     public void setMyPrayerSubject(ArrayList<MyPrayerSubject> myPrayerSubject) {
         this.myPrayerSubject = myPrayerSubject;
     }
+
+
+
+
 }

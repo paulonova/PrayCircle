@@ -1,6 +1,5 @@
 package se.android.praycircle.praycircle.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,13 +26,15 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import se.android.praycircle.praycircle.R;
-import se.android.praycircle.praycircle.helpers.VarHolder;
+import se.android.praycircle.praycircle.helpers.HelperClass;
+import se.android.praycircle.praycircle.objects.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String BUTTON_ID = "ButtonId";
     public static final String LOGIN_SUCCESS = "Login_Success!";
     private final String TAG = "FB_SIGNIN";
+    private User user;
 
     // Firebase Analytics settings
     private final int MIN_SESSION_DURATION = 5000;
@@ -68,12 +69,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                FirebaseUser fbUser = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
-                    //Log.d("FB_User", "User: " + user.getDisplayName() + " email: " + user.getEmail() + " ID: " + user.getUid() + " token: " + user.getToken(true));
-                    // User is signed in
-                    Log.d(TAG, "Signed in: " + user.getUid());
+                if (fbUser != null) {
+
+                    saveEmailAndIdFromFirebaseInUser(fbUser);
+                    Log.d(TAG, "Signed in: " + fbUser.getUid());
+                    Log.d(TAG, "HelperClass: " + HelperClass.getEmailFromFirebase(getApplicationContext()));
+                    Log.d(TAG, "HelperClass: " + HelperClass.getUserIdFromFirebase(getApplicationContext()));
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
@@ -86,6 +89,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignup.setOnClickListener(this);
         btnReset.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
+    }
+
+    public void saveEmailAndIdFromFirebaseInUser(FirebaseUser firebaseUser){
+        user = new User();
+        if(firebaseUser != null){
+            user.setUserEmail(firebaseUser.getEmail());
+            user.setUserId(firebaseUser.getUid());
+            HelperClass.saveEmailFromFirebase(this, firebaseUser.getEmail());
+            HelperClass.saveUserIdFromFirebase(this, firebaseUser.getUid());
+        }
+
     }
 
     /**
