@@ -79,12 +79,13 @@ public class SlidesControllActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(prefManager.isFirstTimeLaunch()){
+                    launchHomeScreen();
+                }
+
                 startActivity(new Intent(SlidesControllActivity.this, LoginActivity.class));
                 finish();
-
-//                if(prefManager.isFirstTimeLaunch()){
-//                    launchHomeScreen();
-//                }
 
             }
         });
@@ -132,7 +133,7 @@ public class SlidesControllActivity extends AppCompatActivity {
 
     // Handle the Login screen starting..
     private void launchHomeScreen() {
-        //prefManager.setFirstTimeLaunch(true);
+        prefManager.setFirstTimeLaunch(true);
         startActivity(new Intent(SlidesControllActivity.this, LoginActivity.class));
         finish();
     }

@@ -1,10 +1,12 @@
 package se.android.praycircle.praycircle.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,11 +23,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import se.android.praycircle.praycircle.R;
 import se.android.praycircle.praycircle.adapters.PagerAdapter;
+import se.android.praycircle.praycircle.helpers.HelperClass;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAnalytics mFaAnalytics;
     private FirebaseAuth auth;
+    Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mFaAnalytics = FirebaseAnalytics.getInstance(this);
         auth = FirebaseAuth.getInstance();
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null){
+            if(!HelperClass.isProfileDone(this)){
+                startActivity(new Intent(this, CreateUserProfileActivity.class));
+            }
+        }
+
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.my_prayers)));
@@ -48,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CreateUserProfileActivity.class));
+                //TODO: Go to create myPrayers activity..
             }
         });
 
@@ -100,6 +114,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
+    public Dialog createProfileDialog(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = this.getLayoutInflater().inflate(R.layout.activity_create_user_profile, null);
+
+        builder.setCancelable(true);
+        final AlertDialog alertDialog = builder.create();
+
+        alertDialog.setView(view);
+        return alertDialog;
+
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -129,21 +159,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (item.getItemId()){
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.edit_profile:
+                startActivity(new Intent(getApplicationContext(), CreateUserProfileActivity.class));
+                break;
 
-        } else if (id == R.id.nav_manage) {
+            case  R.id.nav_gallery:
 
-        } else if (id == R.id.nav_share) {
+                break;
 
-        } else if (id == R.id.nav_send) {
+            case R.id.nav_slideshow:
 
+                break;
+
+            case R.id.nav_manage:
+
+                break;
+
+            case R.id.nav_share:
+
+                break;
+
+            case R.id.nav_send:
+
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

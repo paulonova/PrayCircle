@@ -93,11 +93,16 @@
     <string name="edt_profile_city">City</string>
     <string name="pick_a_profile_picture">Pick a profile picture</string>
     <string name="title_dialog_pick_event_cover">Chose a picture</string>
+    <string name="register">register</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="complete_profile">Complete your profile</string>
 
     <array name="pictures">
         <item>Take a picture</item>
         <item>Photo gallery</item>
     </array>
+
+    <string name="profile_skip">Skip >></string>
 
 
 </resources>

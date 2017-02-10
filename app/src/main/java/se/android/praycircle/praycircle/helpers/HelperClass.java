@@ -9,8 +9,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.EditText;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import se.android.praycircle.praycircle.R;
 
@@ -27,6 +30,8 @@ public class HelperClass {
 
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 3;
+    public static final String PROFILE_IS_DONE = "profile_is_done";
+    public static final String PROFILE_IS_DONE_KEY = "profile_is_done_key";
     private static VarHolder varHolder = VarHolder.getInstance();
 
 
@@ -56,6 +61,18 @@ public class HelperClass {
     public static String getUserIdFromFirebase(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(ID_PREFERENCES, Context.MODE_PRIVATE);
         return sharedPreferences.getString(ID_KEY, "");
+    }
+
+    public static void setUserProfileDone(Context context, boolean isProfileDone){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PROFILE_IS_DONE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean(PROFILE_IS_DONE_KEY, isProfileDone);
+        edit.commit();
+    }
+
+    public static boolean isProfileDone(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PROFILE_IS_DONE, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(PROFILE_IS_DONE_KEY, false);
     }
 
 
@@ -123,6 +140,32 @@ public class HelperClass {
         Uri tempUri = createCameraTempFile();
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         activity.startActivityForResult(Intent.createChooser(i, activity.getString(R.string.title_dialog_pick_event_cover)), MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+    }
+
+
+
+
+
+    // VALIDATIONS
+    public static boolean editTextOnlyTextValidation(EditText edt1){
+
+        if(edt1.getText().toString().equals("")){
+            edt1.setError("Please fill the empty fields..");
+            return false;
+
+        }else{
+            Pattern ps = Pattern.compile("^[a-zA-Z ]+$");
+            Matcher ms = ps.matcher(edt1.getText().toString());
+            boolean bs = ms.matches();
+            Log.d("PATTERN_TEST", "value: " + bs);
+
+            if(!bs){
+                edt1.setError("Please only text..");
+                return false;
+            }
+        }
+
+        return true;
     }
 
 

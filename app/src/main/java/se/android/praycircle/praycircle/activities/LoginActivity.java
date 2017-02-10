@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String BUTTON_ID = "ButtonId";
     public static final String LOGIN_SUCCESS = "Login_Success!";
     private final String TAG = "FB_SIGNIN";
-    private User user;
 
     // Firebase Analytics settings
     private final int MIN_SESSION_DURATION = 5000;
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if (fbUser != null) {
 
-                    saveEmailAndIdFromFirebaseInUser(fbUser);
+                    saveEmailAndIdFromFirebaseInSharedPreferences(fbUser);
                     Log.d(TAG, "Signed in: " + fbUser.getUid());
                     Log.d(TAG, "HelperClass: " + HelperClass.getEmailFromFirebase(getApplicationContext()));
                     Log.d(TAG, "HelperClass: " + HelperClass.getUserIdFromFirebase(getApplicationContext()));
@@ -91,11 +90,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
     }
 
-    public void saveEmailAndIdFromFirebaseInUser(FirebaseUser firebaseUser){
-        user = new User();
+    public void saveEmailAndIdFromFirebaseInSharedPreferences(FirebaseUser firebaseUser){
+
         if(firebaseUser != null){
-            user.setUserEmail(firebaseUser.getEmail());
-            user.setUserId(firebaseUser.getUid());
             HelperClass.saveEmailFromFirebase(this, firebaseUser.getEmail());
             HelperClass.saveUserIdFromFirebase(this, firebaseUser.getUid());
         }

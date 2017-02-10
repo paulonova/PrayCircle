@@ -15,13 +15,15 @@ public class User implements Parcelable {
     private String avatarUrl;
     private String location;
     private String gender;
+    private boolean userCreated;
     private int prayersCreated;
     private int prayersAttended;
 
     public User() {
     }
 
-    public User(String userName, String userId, String userEmail, String userPassword, String avatarUrl, String location, String gender, int prayersCreated, int prayersAttended) {
+    public User(String userName, String userId, String userEmail, String userPassword, String avatarUrl, String location, String gender,
+                        boolean userCreated, int prayersCreated, int prayersAttended) {
         this.userName = userName;
         this.userId = userId;
         this.userEmail = userEmail;
@@ -29,9 +31,11 @@ public class User implements Parcelable {
         this.avatarUrl = avatarUrl;
         this.location = location;
         this.gender = gender;
+        this.userCreated = userCreated;
         this.prayersCreated = prayersCreated;
         this.prayersAttended = prayersAttended;
     }
+
 
     protected User(Parcel in) {
         userName = in.readString();
@@ -41,6 +45,7 @@ public class User implements Parcelable {
         avatarUrl = in.readString();
         location = in.readString();
         gender = in.readString();
+        userCreated = in.readByte() != 0;
         prayersCreated = in.readInt();
         prayersAttended = in.readInt();
     }
@@ -71,9 +76,13 @@ public class User implements Parcelable {
         parcel.writeString(avatarUrl);
         parcel.writeString(location);
         parcel.writeString(gender);
+        parcel.writeByte((byte) (userCreated ? 1 : 0));
         parcel.writeInt(prayersCreated);
         parcel.writeInt(prayersAttended);
     }
+
+
+    //GETTERS AND SETTERS
 
     public String getUserName() {
         return userName;
@@ -129,6 +138,14 @@ public class User implements Parcelable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public boolean isUserCreated() {
+        return userCreated;
+    }
+
+    public void setUserCreated(boolean userCreated) {
+        this.userCreated = userCreated;
     }
 
     public int getPrayersCreated() {
