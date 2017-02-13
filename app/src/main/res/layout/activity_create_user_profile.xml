@@ -121,7 +121,7 @@
 
 
 
-                    <EditText
+                    <AutoCompleteTextView
                         android:id="@+id/editTextProfileCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                         android:hint="@string/edt_profile_city"
                         android:layout_weight="1" />
 
-                    <EditText
+                    <AutoCompleteTextView
                         android:id="@+id/editTextProfileCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

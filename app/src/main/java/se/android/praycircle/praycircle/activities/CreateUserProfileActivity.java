@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -44,8 +45,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 
     @BindView(R.id.editTextProfileFirstName)    EditText editTextProfileFirstName;
     @BindView(R.id.editTextProfileLastName)    EditText editTextProfileLastName;
-    @BindView(R.id.editTextProfileCountry)    EditText editTextProfileCountry;
-    @BindView(R.id.editTextProfileCity)    EditText editTextProfileCity;
+    @BindView(R.id.editTextProfileCountry)   AutoCompleteTextView editTextProfileCountry;
+    @BindView(R.id.editTextProfileCity)    AutoCompleteTextView editTextProfileCity;
     @BindView(R.id.relativeLayoutRegisterProfileButton) RelativeLayout relativeLayoutRegisterProfileButton;
 
     @BindView(R.id.tool_bar) Toolbar toolbar;
